@@ -21,6 +21,13 @@ def create
     end
 end
 
+def destroy
+    parkCollection=ParkCollection.find(params[:id])
+    parkCollection.destroy
+    parkCollections=ParkCollection.all
+    render json: parkCollections
+end
+
 
 def parkCollection_params
     params.permit(:user_id, :park_id)
