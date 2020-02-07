@@ -30,7 +30,7 @@ end
 
 
 def parkCollection_params
-    params.permit(:user_id, :park_id)
+    params.permit(:user_id, :park_id, :description, :directions_url, :url, :full_name)
 end
 
 end
