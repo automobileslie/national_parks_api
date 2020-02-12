@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_213250) do
     t.string "url"
     t.string "full_name"
     t.string "user_id"
+    t.text "notes", default: "Add notes here by typing in the text box below"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

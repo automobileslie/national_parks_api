@@ -1,8 +1,8 @@
 class ParkCollectionsController < ApplicationController
 
 def index
-    parkCollection=ParkCollection.all
-    render json: parkCollection
+    parkCollections=ParkCollection.all
+    render json: parkCollections
 end
 
 def show
@@ -21,6 +21,12 @@ def create
     end
 end
 
+def update
+    parkCollection=ParkCollection.find(params[:id])
+    parkCollection.update(parkCollection_params)
+    render json: ParkCollection.all
+end
+
 def destroy
     parkCollection=ParkCollection.find(params[:id])
     parkCollection.destroy
@@ -30,7 +36,7 @@ end
 
 
 def parkCollection_params
-    params.permit(:user_id, :park_id, :description, :directions_url, :url, :full_name)
+    params.permit(:user_id, :park_id, :description, :directions_url, :url, :full_name, :notes)
 end
 
 end

@@ -7,6 +7,7 @@ class CreateParkCollections < ActiveRecord::Migration[6.0]
       t.string :url
       t.string :full_name
       t.string :user_id
+      t.text :notes, default: "Add notes here by typing in the text box below"
 
       t.timestamps
     end
