@@ -15,7 +15,7 @@ def create
     parkCollection=ParkCollection.create(parkCollection_params)
 
     if parkCollection.valid?
-        render json: parkCollection
+        render json: ParkCollection.all
     else 
         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
     end
