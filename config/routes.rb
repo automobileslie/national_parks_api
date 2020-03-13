@@ -4,11 +4,11 @@ Rails.application.routes.draw do
   # resources :parks
 
 # post '/parks', to: 'parks#index'
-get '/parks/first_set', to: 'parks#first_fetch'
-get '/parks/second_set', to: 'parks#second_fetch'
-get '/parks/third_set', to: 'parks#third_fetch'
-get '/parks/fourth_set', to: 'parks#fourth_fetch'
-get '/parks/fifth_set', to: 'parks#fifth_fetch'
+# get '/parks/first_set', to: 'parks#first_fetch'
+# get '/parks/second_set', to: 'parks#second_fetch'
+# get '/parks/third_set', to: 'parks#third_fetch'
+# get '/parks/fourth_set', to: 'parks#fourth_fetch'
+# get '/parks/fifth_set', to: 'parks#fifth_fetch'
 
 post '/parks', to: 'parks#index'
 
