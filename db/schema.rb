@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_213250) do
+ActiveRecord::Schema.define(version: 2020_03_23_195815) do
+
+  create_table "notes", force: :cascade do |t|
+    t.integer "park_collection_id"
+    t.text "entry", default: "Add notes here by typing in the text box below"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "park_collections", force: :cascade do |t|
     t.string "park_id"
@@ -19,7 +26,6 @@ ActiveRecord::Schema.define(version: 2020_01_29_213250) do
     t.string "url"
     t.string "full_name"
     t.string "user_id"
-    t.text "notes", default: "Add notes here by typing in the text box below"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :park_collections
   resources :users
+  resources :notes
   # resources :parks
 
 # post '/parks', to: 'parks#index'
@@ -11,9 +12,6 @@ Rails.application.routes.draw do
 # get '/parks/fifth_set', to: 'parks#fifth_fetch'
 
 post '/parks', to: 'parks#index'
-
-
-
 
   resources :login, only: [:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

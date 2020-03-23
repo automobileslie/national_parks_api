@@ -2,12 +2,12 @@ class ParkCollectionsController < ApplicationController
 
 def index
     parkCollections=ParkCollection.all
-    render json: parkCollections
+    render json: parkCollections, include: ['notes']
 end
 
 def show
     parkCollection=ParkCollection.find_by(params[:id])
-    render json: parkCollection
+    render json: parkCollection, include: :notes
 end
 
 
@@ -36,7 +36,7 @@ end
 
 
 def parkCollection_params
-    params.permit(:user_id, :park_id, :description, :directions_url, :url, :full_name, :notes)
+    params.permit(:user_id, :park_id, :description, :directions_url, :url, :full_name)
 end
 
 end
