@@ -6,7 +6,7 @@ class CreateParkCollections < ActiveRecord::Migration[6.0]
       t.string :directions_url
       t.string :url
       t.string :full_name
-      t.string :user_id
+      t.integer :user_id
 
       t.timestamps
     end

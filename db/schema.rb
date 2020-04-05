@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_195815) do
     t.string "directions_url"
     t.string "url"
     t.string "full_name"
-    t.string "user_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
