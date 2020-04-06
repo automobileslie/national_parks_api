@@ -1,37 +1,43 @@
 class ParkCollectionsController < ApplicationController
 
 def index
+    if valid_token_exists
     parkCollections=ParkCollection.all
     render json: parkCollections, include: ['notes']
+    else render json: { errors: user.errors.full_messages }, status: :unauthorized
+end
 end
 
 def show
-    parkCollection=ParkCollection.find_by(params[:id])
-    render json: parkCollection, include: :notes
+    park_collection=ParkCollection.find(params[:id])
+    if logged_in_user_id===park_collection.user.id
+    render json: park_collection, include: :notes
+    else render json: { errors: user.errors.full_messages }, status: :unauthorized
+    end
 end
 
 
 def create
-    parkCollection=ParkCollection.create(parkCollection_params)
 
-    if parkCollection.valid?
-        render json: ParkCollection.all
+    if logged_in_user_id===(params[:user_id]) 
+        park_collection=ParkCollection.create(parkCollection_params)
+        render json: park_collection.user.park_collections
     else 
-        render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: user.errors.full_messages }, status: :unauthorized
     end
 end
 
-def update
-    parkCollection=ParkCollection.find(params[:id])
-    parkCollection.update(parkCollection_params)
-    render json: ParkCollection.all
-end
 
 def destroy
-    parkCollection=ParkCollection.find(params[:id])
-    parkCollection.destroy
-    parkCollections=ParkCollection.all
-    render json: parkCollections
+
+    park_collection=ParkCollection.find(params[:id])
+
+    if park_collection.user.id===logged_in_user_id
+    park_collection.destroy
+    park_collections=park_collection.user.park_collections
+    render json: park_collections
+    else render json: {errors: user.errors.full_messages}, status: :unauthorized
+end
 end
 
 
