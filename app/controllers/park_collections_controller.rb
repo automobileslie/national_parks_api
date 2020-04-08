@@ -25,7 +25,7 @@ def create
 
         render json: park_collections
     else 
-        render json: { errors: "go away" }, status: :unauthorized
+        render json: { errors: "go away please" }, status: :unauthorized
     end
 end
 
