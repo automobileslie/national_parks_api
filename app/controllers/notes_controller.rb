@@ -1,43 +1,51 @@
 class NotesController < ApplicationController
 
     def index
+      if valid_token_exists
         notes=Note.all
         render json: notes
+      else render json: {errors: "go away"}, status: :unauthorized
+    end
       end
     
         def show
-          # figure out how to limit access to this- right now I can pull up another user's notes 
           note=Note.find(params[:id])
 
-          if logged_in_user_id===(params[:user_id])
+          if logged_in_user_id===note.park_collection.user_id
             render json: note  
-          else render json: {errors: user.errors.full_messages}, status: :unauthorized
+          else render json: {errors: "go away"}, status: :unauthorized
           end 
         end
     
         def create
+          # maybe work on authorization for this more
           if valid_token_exists
             note = Note.create(note_params)
             render json: note
-          else render json: {errors: user.errors.full_messages}, status: :unauthorized
+          else render json: {errors: "go away"}, status: :unauthorized
         end
         end
     
         def update
-          if valid_token_exists
           note=Note.find(params[:id])
+          if logged_in_user_id===note.park_collection.user_id
           note.update(entry: params[:entry])
           render json: note
-          else render json: {errors: user.errors.full_messages}, status: :unauthorized
+          else render json: {errors: "go away"}, status: :unauthorized
         end
         end
     
         def destroy
-          if valid_token_exists
           note=Note.find(params[:id])
+          notes=Note.all
+          park_collection_id= note.park_collection_id
+          user_id= note.park_collection.user_id
+
+          if logged_in_user_id===user_id
           note.destroy
-          render json: {message: "Your note has been deleted."}
-          else render json: {errors: user.errors.full_messages}, status: :unauthorized
+          notes_in_park_collection= notes.find_by(park_collection: park_collection_id)
+          render json: notes_in_park_collection
+          else render json: {errors: "go away"}, status: :unauthorized
         end
         end
     

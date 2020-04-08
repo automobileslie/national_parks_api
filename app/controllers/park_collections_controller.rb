@@ -4,15 +4,15 @@ def index
     if valid_token_exists
     parkCollections=ParkCollection.all
     render json: parkCollections, include: ['notes']
-    else render json: { errors: user.errors.full_messages }, status: :unauthorized
+    else render json: { errors: "go away" }, status: :unauthorized
 end
 end
 
 def show
     park_collection=ParkCollection.find(params[:id])
-    if logged_in_user_id===park_collection.user.id
+    if logged_in_user_id===park_collection.user_id
     render json: park_collection, include: :notes
-    else render json: { errors: user.errors.full_messages }, status: :unauthorized
+    else render json: { errors: "go away" }, status: :unauthorized
     end
 end
 
@@ -21,9 +21,11 @@ def create
 
     if logged_in_user_id===(params[:user_id]) 
         park_collection=ParkCollection.create(parkCollection_params)
-        render json: park_collection.user.park_collections
+        park_collections=ParkCollection.where(user_id: park_collection.user_id)
+
+        render json: park_collections
     else 
-        render json: { errors: user.errors.full_messages }, status: :unauthorized
+        render json: { errors: "go away" }, status: :unauthorized
     end
 end
 
@@ -32,11 +34,11 @@ def destroy
 
     park_collection=ParkCollection.find(params[:id])
 
-    if park_collection.user.id===logged_in_user_id
+    if park_collection.user_id===logged_in_user_id
     park_collection.destroy
-    park_collections=park_collection.user.park_collections
+    park_collections=ParkCollection.where(user_id: park_collection.user_id)
     render json: park_collections
-    else render json: {errors: user.errors.full_messages}, status: :unauthorized
+    else render json: {errors: "go away"}, status: :unauthorized
 end
 end
 
