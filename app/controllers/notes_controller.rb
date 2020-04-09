@@ -43,7 +43,7 @@ class NotesController < ApplicationController
 
           if logged_in_user_id===user_id
           note.destroy
-          notes_in_park_collection= notes.find_by(park_collection: park_collection_id)
+          notes_in_park_collection= notes.where(park_collection: park_collection_id)
           render json: notes_in_park_collection
           else render json: {errors: "go away"}, status: :unauthorized
         end
