@@ -47,3 +47,5 @@ gem 'dotenv-rails'
 gem 'jwt'
 
 gem 'active_model_serializers'
+
+gem "actionpack", ">= 6.0.3.1"
