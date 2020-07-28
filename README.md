@@ -1,24 +1,18 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+National Parks Trip Planner
 
-Things you may want to cover:
+An app that whets users’ appetite for adventure while they plan trips to National Parks
 
-* Ruby version
+National Parks Trip Planner provides information about national parks in the United States, fetching from the National Park Service API and also linking to the National Park Service website. Users can save parks that they would like to go to or to learn more about and take notes on saved parks as they plan a trip. The idea for this application came from my eagerness to get outdoors. I like that National Parks are low-cost and offer educational opportunities about both history and nature.
 
-* System dependencies
+● Implemented a Ruby on Rails backend that uses a key to fetch from the National Park Service API
 
-* Configuration
+● Set up the app to utilize local storage for some information while a user is logged in for a user-friendly experience
 
-* Database creation
+● Engineered front-end functionality including a search bar, filters, and routes using React and React Router
 
-* Database initialization
+● Enabled JWT token authentication, Bcrypt, and Dotenv-rails to make login and sign up secure
 
-* How to run the test suite
+The front-end of this application is available here: https://github.com/automobileslie/national_parks_app
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A demo of this project is available here: https://www.carlieanglemire.com/static/media/NationalParksDemo.0eb5b0fb.mp4
