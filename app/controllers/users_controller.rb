@@ -17,24 +17,19 @@ class UsersController < ApplicationController
         else
           render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
         end  
-
     end
 
     def destroy
-
       if valid_token_exists
-
       user=User.find(params[:id])
         user.destroy
         render json: {message: "Your account has been deleted."}
       else render json: {errors: user.errors.full_messages}, status: :unauthorized
-    end
-         
+    end    
     end
 
     def user_params
         params.permit(:username, :password)
-
     end
 
 end

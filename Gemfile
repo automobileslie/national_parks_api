@@ -51,3 +51,4 @@ gem 'active_model_serializers'
 gem "activesupport", ">= 6.0.3.1"
 
 gem "activestorage", ">= 6.0.3.1"
+
